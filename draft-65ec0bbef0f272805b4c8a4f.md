@@ -20,7 +20,7 @@ If the answer is “yes” to any of the above,
 
 Read this page carefully
 
-# Pre Requisites
+## Pre Requisites
 
 * Macbook
     
@@ -34,3 +34,59 @@ Installation Command
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
+
+Let's being installing the Python on Mac via
+
+## PyEnv
+
+* This tool helps in installing and easily switching between multiple versions of Python
+    
+* We can set *Global Python* version on per user basis
+    
+* We can set *Per Project* Python versions\\
+    
+
+### Installing PyEnv
+
+```bash
+brew install pyenv
+```
+
+Post Installation, we can check the installation via
+
+```bash
+pyenv --version
+```
+
+### PyEnv Useful command
+
+#### To list all the Python Versions available to PyEnv
+
+Run `pyenv versions`
+
+At the beginning you will see the following
+
+```bash
+➜  ~ pyenv versions
+* system (set by /Users/bornshrewd/.pyenv/version)
+```
+
+This displays the Python that comes with MacBook
+
+#### To List all available versions of Python
+
+Run `pyenv install --list`
+
+#### To install a versions of Python
+
+Run `pyenv install <version>`
+
+E.g. `pyenv install 3.11.8` and `pyenv install 3.10.13`
+
+Let's install both of them
+
+## References
+
+* [Homebrew](https://brew.sh)
+    
+* PyEnv [Github](https://github.com/pyenv/pyenv)
