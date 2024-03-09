@@ -83,7 +83,39 @@ Run `pyenv install <version>`
 
 E.g. `pyenv install 3.11.8` and `pyenv install 3.10.13`
 
-Let's install both of them
+Let's install both of them, On listing the available Python versions via `pyenv versions` we see the following
+
+#### To un install a versions of Python
+
+Run `pyenv uninstall <version>`
+
+E.g. `pyenv uninstall 3.10.13`
+
+#### To set a versions of Python in current Folder
+
+Run `pyenv local <version>`
+
+E.g. `pyenv local 3.10.13`
+
+It creates a `.python-version` file in your current directory
+
+#### To set a versions of Python Globally
+
+Run `pyenv global <version>`
+
+E.g. `pyenv global 3.10.13`
+
+### PyEnv Command Table
+
+<table><tbody><tr><td colspan="1" rowspan="1"><p>To check versions and which python is activated</p></td><td colspan="1" rowspan="1"><p>pyenv versions</p></td></tr><tr><td colspan="1" rowspan="1"><p>To check Available versions</p></td><td colspan="1" rowspan="1"><p>pyenv install --list | grep " 3.11"</p></td></tr><tr><td colspan="1" rowspan="1"><p>To install a version</p></td><td colspan="1" rowspan="1"><p>pyenv install 3.11.8</p></td></tr><tr><td colspan="1" rowspan="1"><p>Where is python installed</p></td><td colspan="1" rowspan="1"><p>ls ~/.pyenv/versions/</p></td></tr><tr><td colspan="1" rowspan="1"><p>Uninstalling Python</p></td><td colspan="1" rowspan="1"><p>pyenv uninstall 3.10.5</p></td></tr><tr><td colspan="1" rowspan="1"><p>Setting Global Python</p></td><td colspan="1" rowspan="1"><p>pyenv global 3.10.5</p></td></tr><tr><td colspan="1" rowspan="1"><p>Setting Local Python</p></td><td colspan="1" rowspan="1"><p>pyenv local 2.7.15</p></td></tr><tr><td colspan="1" rowspan="1"><p>Which python is activated in pyenv</p></td><td colspan="1" rowspan="1"><p>pyenv which python</p></td></tr></tbody></table>
+
+This solves one part of the problem.
+
+The another part is we need to create Isolated Environments for each Python Project.
+
+For that we will need another tool
+
+## Pyenv Virtualenv
 
 ## References
 
