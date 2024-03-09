@@ -19,3 +19,18 @@ slug: beginners-essential-guide-to-setting-up-python-on-a-macbook-in-2024
 If the answer is “yes” to any of the above,  
 
 Read this page carefully
+
+# Pre Requisites
+
+* Macbook
+    
+* Homebrew Installation
+    
+
+> Homebrew for Mac is a free and open-source software package management system that simplifies the installation of software on macOS and Linux
+
+Installation Command
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
