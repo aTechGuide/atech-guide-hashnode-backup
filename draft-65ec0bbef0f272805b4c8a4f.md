@@ -58,6 +58,18 @@ Post Installation, we can check the installation via
 pyenv --version
 ```
 
+Next, we need to set up our shell environment for Pyenv
+
+For zsh Shell, run following commands
+
+```bash
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+```
+
+For other shells, refer [this](https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv) section
+
 ### PyEnv Useful command
 
 #### To list all the Python Versions available to PyEnv
@@ -85,6 +97,13 @@ E.g. `pyenv install 3.11.8` and `pyenv install 3.10.13`
 
 Let's install both of them, On listing the available Python versions via `pyenv versions` we see the following
 
+```bash
+➜  ~ pyenv versions                        
+* system (set by /Users/bornshrewd/.pyenv/version)
+  3.10.13
+  3.11.8
+```
+
 #### To un install a versions of Python
 
 Run `pyenv uninstall <version>`
@@ -95,9 +114,25 @@ E.g. `pyenv uninstall 3.10.13`
 
 Run `pyenv local <version>`
 
-E.g. `pyenv local 3.10.13`
+E.g.
 
-It creates a `.python-version` file in your current directory
+1. Let's create a `temp` folder and run `pyenv local 3.10.13` inside it
+    
+2. It will create a `.python-version` file in the current directory
+    
+3. On running `python --version` we will see `Python 3.10.13`
+    
+
+```bash
+➜  ~ cd temp 
+➜  temp pyenv local 3.10.13
+➜  temp ls -a              
+.               ..              .python-version
+➜  temp cat .python-version 
+3.10.13
+➜  temp python --version
+Python 3.10.13
+```
 
 #### To set a versions of Python Globally
 
@@ -116,6 +151,9 @@ The another part is we need to create Isolated Environments for each Python Proj
 For that we will need another tool
 
 ## Pyenv Virtualenv
+
+* It is a PyEnv plugin that provides features to manage virtualenvs for Python
+    
 
 ## References
 
