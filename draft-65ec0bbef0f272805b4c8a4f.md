@@ -1,6 +1,6 @@
 ---
-title: "Beginners essential Guide to Setting Up Python on a MacBook in 2024"
-slug: beginners-essential-guide-to-setting-up-python-on-a-macbook-in-2024
+title: "Step-by-Step Guide: Installing Python on a MacBook for Beginners (2024 Edition)"
+slug: beginners-essential-guide-to-setting-up-python-on-a-macbook
 
 ---
 
@@ -37,7 +37,7 @@ Installation Command
 
 Let's being installing the Python on Mac via
 
-## PyEnv
+## 1 PyEnv
 
 * This tool helps in installing and easily switching between multiple versions of Python
     
@@ -46,7 +46,7 @@ Let's being installing the Python on Mac via
 * We can set *Per Project* Python versions\\
     
 
-### Installing PyEnv
+### 1a Installing PyEnv
 
 ```bash
 brew install pyenv
@@ -70,32 +70,18 @@ echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 
 For other shells, refer [this](https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv) section
 
-### PyEnv Useful command
+### 1b PyEnv Useful command
 
-#### To list all the Python Versions available to PyEnv
+#### To install a version of Python
 
-Run `pyenv versions`
+1. To do that, first we need to check all the available versions of Python via `pyenv install --list`
+    
+2. Run `pyenv install <version>` to install a particular version. E.g. `pyenv install 3.11.8` and `pyenv install 3.10.13`
+    
 
-At the beginning you will see the following
+Let's install both of them
 
-```bash
-➜  ~ pyenv versions
-* system (set by /Users/bornshrewd/.pyenv/version)
-```
-
-This displays the Python that comes with MacBook
-
-#### To List all available versions of Python
-
-Run `pyenv install --list`
-
-#### To install a versions of Python
-
-Run `pyenv install <version>`
-
-E.g. `pyenv install 3.11.8` and `pyenv install 3.10.13`
-
-Let's install both of them, On listing the available Python versions via `pyenv versions` we see the following
+On listing the available Python versions via `pyenv versions` we see the following
 
 ```bash
 ➜  ~ pyenv versions                        
@@ -104,13 +90,9 @@ Let's install both of them, On listing the available Python versions via `pyenv 
   3.11.8
 ```
 
-#### To un install a versions of Python
+Where `system` represents the Python that comes with MacBook
 
-Run `pyenv uninstall <version>`
-
-E.g. `pyenv uninstall 3.10.13`
-
-#### To set a versions of Python in current Folder
+#### To Use a version of Python in current Folder
 
 Run `pyenv local <version>`
 
@@ -134,13 +116,19 @@ E.g.
 Python 3.10.13
 ```
 
-#### To set a versions of Python Globally
+#### To set a version of Python Globally
 
 Run `pyenv global <version>`
 
 E.g. `pyenv global 3.10.13`
 
-### PyEnv Command Table
+#### To delete a version of Python
+
+Run `pyenv uninstall <version>`
+
+E.g. `pyenv uninstall 3.10.13`
+
+### 1c PyEnv Command Table
 
 <table><tbody><tr><td colspan="1" rowspan="1"><p>To check versions and which python is activated</p></td><td colspan="1" rowspan="1"><p>pyenv versions</p></td></tr><tr><td colspan="1" rowspan="1"><p>To check Available versions</p></td><td colspan="1" rowspan="1"><p>pyenv install --list | grep " 3.11"</p></td></tr><tr><td colspan="1" rowspan="1"><p>To install a version</p></td><td colspan="1" rowspan="1"><p>pyenv install 3.11.8</p></td></tr><tr><td colspan="1" rowspan="1"><p>Where is python installed</p></td><td colspan="1" rowspan="1"><p>ls ~/.pyenv/versions/</p></td></tr><tr><td colspan="1" rowspan="1"><p>Uninstalling Python</p></td><td colspan="1" rowspan="1"><p>pyenv uninstall 3.10.5</p></td></tr><tr><td colspan="1" rowspan="1"><p>Setting Global Python</p></td><td colspan="1" rowspan="1"><p>pyenv global 3.10.5</p></td></tr><tr><td colspan="1" rowspan="1"><p>Setting Local Python</p></td><td colspan="1" rowspan="1"><p>pyenv local 2.7.15</p></td></tr><tr><td colspan="1" rowspan="1"><p>Which python is activated in pyenv</p></td><td colspan="1" rowspan="1"><p>pyenv which python</p></td></tr></tbody></table>
 
@@ -150,13 +138,99 @@ The another part is we need to create Isolated Environments for each Python Proj
 
 For that we will need another tool
 
-## Pyenv Virtualenv
+## 2 PyEnv Virtualenv
 
 * It is a PyEnv plugin that provides features to manage virtualenvs for Python
     
+
+### 2a Installing PyEnv Virtualenv
+
+```bash
+$ brew install pyenv-virtualenv
+```
+
+Next, we need to set up our shell environment for Pyenv Virtualenv
+
+For zsh Shell, run following commands
+
+```bash
+echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
+```
+
+### 2b PyEnv Virtualenv Useful command
+
+#### To create a virtual env
+
+Run `pyenv virtualenv <python_version> <environment_name>`
+
+Example
+
+* Before Creating Virtual environment
+    
+
+```bash
+➜  ~ pyenv versions
+* system (set by /Users/bornshrewd/.pyenv/version)
+  3.10.13
+  3.11.8
+```
+
+* Creating a Virtual Environment -&gt; `pyenv virtualenv 3.11.8 python_project-3.11`
+    
+* Post Creating Virtual Environment, I can see `3.11.8/envs/python_project-3.11` and a Symlink `python_project-3.11`
+    
+    * I can
+        
+
+```bash
+➜  ~ pyenv virtualenv 3.11.8 python_project-3.11 
+➜  ~ pyenv versions                              
+* system (set by /Users/bornshrewd/.pyenv/version)
+  3.10.13
+  3.11.8
+  3.11.8/envs/python_project-3.11
+  python_project-3.11 --> /Users/bornshrewd/.pyenv/versions/3.11.8/envs/python_project-3.11
+```
+
+#### To use virtual env
+
+Run `pyenv local <my-virtual-env>`
+
+E.g.
+
+* Create a Project `python_project-3.11`
+    
+* Use virtual env `pyenv local python_project-3.11`
+    
+
+```bash
+➜  ~ mkdir python_project-3.11
+➜  ~ cd python_project-3.11
+➜  python_project-3.11 pyenv local python_project-3.11
+(python_project-3.11) ➜  python_project-3.11 ls -a
+.               ..              .python-version
+(python_project-3.11) ➜  python_project-3.11 cat .python-version 
+python_project-3.11
+```
+
+#### To List virtual env
+
+Run `pyenv virtualenvs`
+
+#### To delete virtual env
+
+Run `pyenv virtualenv-delete <my-virtual-env>`
+
+E.g. `pyenv virtualenv-delete python_project-3.11`
+
+### 2c PyEnv Virtualenv Command Table
+
+<table><tbody><tr><td colspan="1" rowspan="1"><p>Create Virtual Env</p></td><td colspan="1" rowspan="1"><p>pyenv virtualenv &lt;python_version&gt; &lt;environment_name&gt;</p></td></tr><tr><td colspan="1" rowspan="1"><p>Use Virtual env</p></td><td colspan="1" rowspan="1"><p>pyenv local &lt;environment_name&gt;</p></td></tr><tr><td colspan="1" rowspan="1"><p>List virtual env</p></td><td colspan="1" rowspan="1"><p>pyenv virtualenvs</p></td></tr><tr><td colspan="1" rowspan="1"><p>Remove Virtual env</p></td><td colspan="1" rowspan="1"><p>pyenv virtualenv-delete &lt;environment_name&gt;</p></td></tr></tbody></table>
 
 ## References
 
 * [Homebrew](https://brew.sh)
     
 * PyEnv [Github](https://github.com/pyenv/pyenv)
+    
+* PyEnv pyenv-virtualenv [Github](https://github.com/pyenv/pyenv-virtualenv)
