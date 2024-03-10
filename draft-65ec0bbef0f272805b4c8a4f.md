@@ -29,13 +29,15 @@ Read this page carefully
 
 > Homebrew for Mac is a free and open-source software package management system that simplifies the installation of software on macOS and Linux
 
-Installation Command
+### Homebrew Installation
+
+We can install Homebrew via following command
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Let's being installing the Python on Mac via
+Let's begin installing Python on Mac via.
 
 ## 1 PyEnv
 
@@ -48,15 +50,9 @@ Let's being installing the Python on Mac via
 
 ### 1a Installing PyEnv
 
-```bash
-brew install pyenv
-```
+Run `brew install pyenv` to Install PyEnv
 
-Post Installation, we can check the installation via
-
-```bash
-pyenv --version
-```
+Post installation, Run `pyenv --version` to confirm the installation.
 
 Next, we need to set up our shell environment for Pyenv
 
@@ -145,17 +141,11 @@ For that we will need another tool
 
 ### 2a Installing PyEnv Virtualenv
 
-```bash
-$ brew install pyenv-virtualenv
-```
+Run `brew install pyenv-virtualenv` to Install PyEnv
 
 Next, we need to set up our shell environment for Pyenv Virtualenv
 
-For zsh Shell, run following commands
-
-```bash
-echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
-```
+For zsh Shell, Run `echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc`
 
 ### 2b PyEnv Virtualenv Useful command
 
@@ -226,6 +216,25 @@ E.g. `pyenv virtualenv-delete python_project-3.11`
 ### 2c PyEnv Virtualenv Command Table
 
 <table><tbody><tr><td colspan="1" rowspan="1"><p>Create Virtual Env</p></td><td colspan="1" rowspan="1"><p>pyenv virtualenv &lt;python_version&gt; &lt;environment_name&gt;</p></td></tr><tr><td colspan="1" rowspan="1"><p>Use Virtual env</p></td><td colspan="1" rowspan="1"><p>pyenv local &lt;environment_name&gt;</p></td></tr><tr><td colspan="1" rowspan="1"><p>List virtual env</p></td><td colspan="1" rowspan="1"><p>pyenv virtualenvs</p></td></tr><tr><td colspan="1" rowspan="1"><p>Remove Virtual env</p></td><td colspan="1" rowspan="1"><p>pyenv virtualenv-delete &lt;environment_name&gt;</p></td></tr></tbody></table>
+
+## Conclusion
+
+In conclusion, installing Python on a MacBook doesn't have to be a daunting task.
+
+By leveraging tools like PyEnv and PyEnv Virtualenv, we can easily manage multiple Python versions and create isolated environments for our projects.
+
+This step-by-step guide has walked us through the process of setting up Python on your MacBook, via
+
+1. Leveraging PyEnv to install multiple Python Versions
+    
+2. Creating and managing virtual environments with PyEnv Virtualenv
+    
+
+With these tools at our disposal, we can avoid common pitfalls such as version conflicts, environment pollution, and difficulty in replicating development environments, ensuring a smoother and more efficient workflow for our Python projects.
+
+Remember, the key to mastering Python setup on your MacBook is practice and exploration, so don't hesitate to experiment with different versions and environments as you become more comfortable with these tools.
+
+Next, we will learn how to set up Python Project in my next Article.
 
 ## References
 
