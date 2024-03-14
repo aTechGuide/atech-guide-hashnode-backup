@@ -1,13 +1,13 @@
 ---
-title: "Step-by-Step Guide: Installing Python on a MacBook for Beginners (2024 Edition)"
-slug: beginners-essential-guide-to-setting-up-python-on-a-macbook
-cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1710049340094/286eb909-b093-4bf2-9ed6-2aad8b323570.jpeg
+title: "Step-by-Step Guide: Installing Python "The Right Way" on a MacBook for Beginners (2024 Edition)"
+slug: install-python-on-mac-beginner-step-by-step-guide
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1710206419633/bdd5e5aa-de34-4ec9-8dfe-3f69333ecb46.jpeg
 
 ---
 
-## **Can You Relate?**
+## Can You Relate?
 
-👉 You want a step-by-step guide to install Python on a MacBook
+👉 You want a step-by-step foolproof guide to install Python on a MacBook
 
 👉 You have faced ***Version Conflicts***, i.e., different projects may require different Python versions, leading to conflicts and difficulties in managing the appropriate version for each project.
 
@@ -21,6 +21,14 @@ If the answer is “yes” to any of the above,
 
 Read this page carefully.
 
+## TLDR
+
+This guide provides a detailed, step-by-step process for installing Python on a MacBook, specifically for beginners.
+
+It introduces Homebrew for initial setup, then focuses on using PyEnv to manage multiple Python versions and PyEnv Virtualenv for creating isolated project environments.
+
+This approach helps avoid common issues like version conflicts, environment pollution, ensuring a smoother Python setup and project management experience on macOS.
+
 ## Pre Requisites
 
 * MacBook
@@ -33,6 +41,8 @@ Read this page carefully.
 ### Homebrew Installation
 
 Run `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` to install Homebrew
+
+A naive way of installing python on MacBook is via downloading
 
 Let's begin installing Python on a Mac via.
 
@@ -74,11 +84,39 @@ For other shells, refer [this](https://github.com/pyenv/pyenv#set-up-your-shell-
 
 Let's install both of them.
 
-Upon listing the available Python versions via `pyenv versions`, we see the following:
+<div data-node-type="callout">
+<div data-node-type="callout-emoji">🦂</div>
+<div data-node-type="callout-text">Error Resolution</div>
+</div>
+
+If you see below error while installing 3.11.8
+
+```plaintext
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>In
+
+  File "/Users/atech-guide/.pyenv/versions/3.11.8/lib/python3.11/lzma.py", line 27, in <module>
+tppl
+    from _lzma import *
+
+ModuleNotFoundError: No module named '_lzma'
+```
+
+As solution, do the following
+
+* Install xz =&gt; brew install xz
+    
+* un-install Python =&gt; pyenv uninstall 3.11.8
+    
+* reinstall Python =&gt; pyenv install 3.11.8
+    
+
+Post successful installation, let's list the Python versions via `pyenv versions`, we see the following:
 
 ```bash
-➜  ~ pyenv versions                        
-* system (set by /Users/bornshrewd/.pyenv/version)
+atech.guide@macbook-air-m1 ~ % pyenv versions
+* system (set by /Users/atech-guide/.pyenv/version)
   3.10.13
   3.11.8
 ```
@@ -88,26 +126,6 @@ Where `system` represents the Python that comes with MacBook.
 #### To Use a version of Python in the current Folder
 
 Run `pyenv local <version>`
-
-E.g.
-
-1. Let's create a `temp` folder and run `pyenv local 3.10.13` inside it.
-    
-2. It will create a `.python-version` file in the current directory.
-    
-3. On running `python --version` we will see `Python 3.10.13`.
-    
-
-```bash
-➜  ~ cd temp 
-➜  temp pyenv local 3.10.13
-➜  temp ls -a              
-.               ..              .python-version
-➜  temp cat .python-version 
-3.10.13
-➜  temp python --version
-Python 3.10.13
-```
 
 #### To set a version of Python Globally
 
@@ -121,12 +139,49 @@ Run `pyenv uninstall <version>`
 
 E.g. `pyenv uninstall 3.10.13`
 
-### 1c PyEnv Command Table
+### 1c PyEnv Example
+
+Let's create a folder named `python_projects` .
+
+Under it let's create two example projects, `example_python_project_1` and `example_python_project_2` .
+
+At end, we have a folder structure as follows
+
+```bash
+atech.guide@macbook-air-m1 python_projects % tree
+.
+├── example_python_project_1
+└── example_python_project_2
+```
+
+Under each project sub folder, lets use different versions of python by running
+
+* `pyenv local 3.11.8` for example\_python\_project\_1
+    
+* `pyenv local 3.10.13` for example\_python\_project\_2
+    
+
+If we check the python versions under both the sub folders (via `python --version`) we will see different versions
+
+```bash
+atech.guide@macbook-air-m1 python_projects % cd example_python_project_1
+atech.guide@macbook-air-m1 example_python_project_1 % pyenv local 3.11.8
+atech.guide@macbook-air-m1 example_python_project_1 % python --version
+Python 3.11.8
+
+atech.guide@macbook-air-m1 example_python_project_1 % cd ../example_python_project_2
+
+atech.guide@macbook-air-m1 example_python_project_2 % pyenv local 3.10.13      
+atech.guide@macbook-air-m1 example_python_project_2 % python --version
+Python 3.10.13
+```
+
+### 1d PyEnv Command Table
 
 | Action | Command |
 | --- | --- |
 | To check versions and which python is activated | `pyenv versions` |
-| To check Available versions | \`pyenv install --list |
+| To check Available versions | `pyenv install --list` |
 | To install a version | `pyenv install 3.11.8` |
 | Where is python installed | `ls ~/.pyenv/versions/` |
 | Uninstalling Python | `pyenv uninstall 3.10.5` |
@@ -159,53 +214,9 @@ For zsh Shell, run `echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc`.
 
 Run `pyenv virtualenv <python_version> <environment_name>`.
 
-Example
-
-* Before Creating Virtual environment
-    
-
-```bash
-➜  ~ pyenv versions
-* system (set by /Users/bornshrewd/.pyenv/version)
-  3.10.13
-  3.11.8
-```
-
-* Creating a Virtual Environment -&gt; `pyenv virtualenv 3.11.8 python_project-3.11`
-    
-* Post Creating a Virtual Environment, I can see `3.11.8/envs/python_project-3.11` and a Symlink `python_project-3.11`
-    
-
-```bash
-➜  ~ pyenv virtualenv 3.11.8 python_project-3.11 
-➜  ~ pyenv versions                              
-* system (set by /Users/bornshrewd/.pyenv/version)
-  3.10.13
-  3.11.8
-  3.11.8/envs/python_project-3.11
-  python_project-3.11 --> /Users/bornshrewd/.pyenv/versions/3.11.8/envs/python_project-3.11
-```
-
 #### To use virtual env
 
 Run `pyenv local <my-virtual-env>`
-
-E.g.
-
-* Create a Project `python_project-3.11` .
-    
-* Use virtual env `pyenv local python_project-3.11` .
-    
-
-```bash
-➜  ~ mkdir python_project-3.11
-➜  ~ cd python_project-3.11
-➜  python_project-3.11 pyenv local python_project-3.11
-(python_project-3.11) ➜  python_project-3.11 ls -a
-.               ..              .python-version
-(python_project-3.11) ➜  python_project-3.11 cat .python-version 
-python_project-3.11
-```
 
 #### To List virtual env
 
@@ -217,7 +228,32 @@ Run `pyenv virtualenv-delete <my-virtual-env>`
 
 E.g. `pyenv virtualenv-delete python_project-3.11`
 
-### 2c PyEnv Virtualenv Command Table
+### 2c PyEnv Virtualenv Example
+
+Before Creating Virtual environment
+
+```bash
+atech.guide@macbook-air-m1 ~ % pyenv versions
+* system (set by /Users/atech-guide/.pyenv/version)
+  3.10.13
+  3.11.8
+```
+
+Creating a Virtual Environment -&gt; `pyenv virtualenv 3.11.8 example_python_project_1`
+
+```bash
+atech.guide@macbook-air-m1 ~ % pyenv virtualenv 3.11.8 example_python_project_1 
+atech.guide@macbook-air-m1 ~ % pyenv versions
+* system (set by /Users/atech-guide/.pyenv/version)
+  3.10.13
+  3.11.8
+  3.11.8/envs/example_python_project_1
+  example_python_project_1 --> /Users/atech-guide/.pyenv/versions/3.11.8/envs/example_python_project_1
+```
+
+Where `3.11.8/envs/example_python_project_1` is virtual env and `example_python_project_1` is Symlink
+
+### 2d PyEnv Virtualenv Command Table
 
 | Action | Command |
 | --- | --- |
@@ -252,5 +288,7 @@ Next, we will learn how to set up a Python Project in my next Article.
 * PyEnv [GitHub](https://github.com/pyenv/pyenv)
     
 * PyEnv pyenv-virtualenv [GitHub](https://github.com/pyenv/pyenv-virtualenv)
+    
+* Python 3.11.8 installation error solution [Gist](https://gist.github.com/iandanforth/f3ac42b0963bcbfdf56bb446e9f40a33)
     
 * Image Credit: Google Gemini
